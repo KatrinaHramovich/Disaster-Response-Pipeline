@@ -49,6 +49,6 @@ b) To run ML pipeline that trains classifier and saves python models/train_class
 
 2 Run the following command in the app's directory to run your web app. python run.py
 
-3 Go to http://0.0.0.0:3000/
+3 Go to http://0.0.0.0:3001/
 
           
