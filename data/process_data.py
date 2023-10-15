@@ -4,6 +4,17 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
+    """
+    Load_data
+    Load data from cvs files and merge to a single panda data frame
+    
+    INPUT:
+    messages_filepath - path to messages csv file
+    categories_filepath - path to categories csv file
+    
+    OUTPUT:
+    df - dataframe merging categories and messages
+    """
     # load dataset
     categories = pd.read_csv(categories_filepath)
     messages = pd.read_csv(messages_filepath)
@@ -32,12 +43,27 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    """
+    INPUT:
+    df - Merged data
+    
+    OUTPUT:
+    df - Cleaned data
+    """
     # drop duplicates
     df = df.drop_duplicates()
     return df
     
 
 def save_data(df, database_filename):
+    """
+    INPUT:
+    df - cleaned data
+    database_filename - database filename for sqlite database with (.db) file type
+    
+    OUTPUT:
+    None - save cleaned data into sqlite database
+    """
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('DisasterResponse', engine,if_exists = 'replace', index=False)  
 
